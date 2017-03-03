@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
+import { getDataWeather } from './actions/weather';
+
 
 class App extends Component {
   render() {
-    const currentStore = this.props.currentStore;
     return (
       <div>
-      {currentStore.weather[0].cityid}
-      </div>
+      <input type="button" value="get data" onClick={this.props.getWeather} />
+  </div>
   );
   }
 }
@@ -17,5 +18,10 @@ export default connect(
   state => ({
     currentStore: state
   }),
-  dispatch => ({})
+  dispatch => ({
+    getWeather: () => {
+      dispatch(getDataWeather());
+    }
+  })
 )(App);
+
